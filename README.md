@@ -1,0 +1,2 @@
+# Deep-U-Net-for-Faint-Stellar-Stream-Detection-amidst-Galactic-Cirrus
+Deep U-Net pipeline for detecting faint stellar streams and galactic cirrus in multi-band astronomical imagery (SDSS g/r + WISE W1/W2). Includes a physics-informed synthetic data generator with 1/f^β fractal noise, Bayesian hyperparameter optimization via Optuna, and Test-Time Augmentation inference. Achieves Stream IoU > 0.84 and Recall > 0.93.
