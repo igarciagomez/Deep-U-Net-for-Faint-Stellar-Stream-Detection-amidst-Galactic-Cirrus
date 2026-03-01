@@ -13,16 +13,16 @@ This repository contains the complete Deep Learning pipeline for detecting **Low
 
 ## 📂 Project Pipeline
 
-### 1. [Astrophysical Data Generator](Notebooks/astrophysical-generator-stellar-streams-cirrus.ipynb)
+### 1. [Astrophysical Data Generator](https://www.kaggle.com/code/ibongarciagomez/astrophysical-generator-stellar-streams-cirrus)
 This notebook implements a physics-informed synthetic data pipeline that generates 20,000 multi-band FITS images (SDSS g/r + WISE W1/W2) with pixel-level ground truth masks. Stellar streams are modeled using quadratic Bézier curves with stochastic $1/f^\beta$ fractal noise ($\beta \in [1.5, 2.5]$), while galactic cirrus is generated using Brownian motion fields ($\beta \in [2.5, 3.5]$). A Hard Example Mining strategy forces 8,000 samples into extreme conditions: high-contrast cirrus-stream overlaps and critically low SNR streams.
 
-### 2. [Deep U-Net Training Pipeline](Notebooks/deep-u-net-for-faint-stellar-stream-detection.ipynb)
+### 2. [Deep U-Net Training Pipeline](https://www.kaggle.com/code/ibongarciagomez/deep-u-net-for-faint-stellar-stream-detection)
 This notebook trains a Deep Dynamic U-Net (Depth 4, 64 start filters) for 3-class semantic segmentation of astronomical scenes. The architecture uses a weighted hybrid loss function (90% Dice + 10% CCE) to prioritize structural recovery of faint, curvilinear features. Training employs a "Slow Cooking" strategy with ReduceLROnPlateau and Early Stopping (patience=40), running under Mixed Precision (float16) on NVIDIA P100 for accelerated convergence.
 
-### 3. [Bayesian Hyperparameter Optimization](Notebooks/hyperparameter-tuning-stellar-streams-optuna.ipynb)
+### 3. [Bayesian Hyperparameter Optimization](https://www.kaggle.com/code/ibongarciagomez/hyperparameter-tuning-stellar-streams-optuna)
 This notebook executes a Bayesian hyperparameter search using the Optuna framework (TPE sampler + Hyperband pruning) to tune 5 critical parameters: network depth (3–5), start filters (32/64), dropout rate, learning rate, and Dice loss weight. The search runs on a representative 4,000-sample subset for up to 30 trials (7-hour timeout), identifying the optimal configuration that maximizes validation Dice coefficient.
 
-### 4. [Inference & Error Analysis](Notebooks/stream-detection-inference-error-analysis.ipynb)
+### 4. [Inference & Error Analysis](https://www.kaggle.com/code/ibongarciagomez/stream-detection-inference-error-analysis)
 This notebook performs the final evaluation of the trained model on an unseen test set. It implements a 4× Test-Time Augmentation (TTA) engine to improve boundary precision, computes per-class IoU, Precision, Recall, and F1-Score, and generates a normalized confusion matrix. A qualitative hard-mining analysis identifies the best and worst predictions to understand model limitations and inform future improvements.
 
 ---
